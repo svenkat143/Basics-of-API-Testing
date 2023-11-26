@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;Bijak_Just_API_Automation&apos;" deleteContents="false" description="Delete resource &apos;Bijak_Just_API_Automation&apos;" element1="/Bijak_Just_API_Automation" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1700445676310"/>&#x0A;<refactoring comment="Delete resource &apos;Bijak_Just_API_Automation&apos;" deleteContents="false" description="Delete resource &apos;Bijak_Just_API_Automation&apos;" element1="/Bijak_Just_API_Automation" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1700445886418"/>
+</session>

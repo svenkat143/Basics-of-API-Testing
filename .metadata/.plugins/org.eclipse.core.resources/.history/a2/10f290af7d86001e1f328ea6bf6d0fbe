@@ -1,0 +1,40 @@
+// This is the third file after ComplexJsonParse.java. In this file we are validating the sum of all the prices.
+// In this file we are validating the sum of all the prices as a testcase using testng hence "public static void main(String[] args)" is not mentioned.
+
+package Basic_Json_Parsing;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import files.payload;
+import io.restassured.path.json.JsonPath;
+
+public class SumValidation {
+
+    // @Test annotation is used to mark a method as a test method. This will help to execute the code written in the method.
+	@Test
+	public void sumOfCourses()
+	{
+		int sum = 0;
+
+        //Here we are passing the dummy response from the CoursePrice() of Payload.
+		JsonPath js=new JsonPath(payload.CoursePrice());
+		int count=	js.getInt("courses.size()");
+		for(int i=0;i<count;i++)
+		{
+			int price=js.getInt("courses["+i+"].price");
+			int copies=js.getInt("courses["+i+"].copies");
+			int amount = price * copies;
+			System.out.println("Total Amount of "+js.get("courses["+i+"].title")+" is: "+amount);
+			sum = sum + amount;
+			
+		}
+		System.out.println("Total Sum of all course amounts is: "+sum);
+		int purchaseAmount =js.getInt("dashboard.purchaseAmount");
+		// Both the print statements will work fine.
+		//System.out.println("The purchase amount given by API response is: " + js.getInt("dashboard.purchaseAmount"));
+		System.out.println("The purchase amount given by API response is: " + purchaseAmount);
+		Assert.assertEquals(sum, purchaseAmount);
+		
+	}
+}

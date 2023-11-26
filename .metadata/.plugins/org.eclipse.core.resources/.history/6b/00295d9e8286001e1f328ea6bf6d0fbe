@@ -1,0 +1,30 @@
+package Basics_of_Restassured;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
+
+public class AutomateGET {
+
+	
+	@org.testng.annotations.Test
+	public void validate_get_status_code() {
+		
+		
+		//RestAssured works on 3 Principles: -
+		//given - all input details line url, headers, etc
+		//when - Submit the API -resource,http method like get, put, delete,etc
+		//Then - validate the response
+		
+		given(). 
+				baseUri("https://api.postman.com").
+				header("X-Api-Key","PMAK-65596072592c4f00389d5e7b-7c51b3c8919b8262394cce80a545215107").
+		when().
+				get("/workspaces").
+		then().
+				log().all()
+				.assertThat()
+				.statusCode(200)
+				.body("workspaces.name", hasItems("Team Workspace","test","My R&D","My Workspace","My Workspace","My Workspace"),
+						"workspaces.type", hasItems("team","team","team","team","team","personal"));
+	}
+}

@@ -1,0 +1,21 @@
+package Basics_of_Restassured;
+
+import static io.restassured.RestAssured.given;
+
+public class AutomateGET {
+
+	
+	@org.testng.annotations.Test
+	public void validate_get_status_code() {
+		
+		
+		//RestAssured works on 3 Principles: -
+		//given - all input details line url, headers, etc
+		//when - Submit the API -resource,http method like get, put, delete,etc
+		//Then - validate the response
+		
+		given().
+		when().
+		then();
+	}
+}

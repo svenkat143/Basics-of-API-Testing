@@ -1,0 +1,58 @@
+package Basics_of_Restassured;
+
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+
+
+public class AutomateGET {
+
+	
+	@org.testng.annotations.Test
+	public void validate_get_status_code() {
+		
+		
+		//RestAssured works on 3 Principles: -
+		//given - all input details line url, headers, etc
+		//when - Submit the API -resource,http method like get, put, delete,etc
+		//Then - validate the response
+		
+		given(). 
+				baseUri("https://api.postman.com").
+				header("X-Api-Key","PMAK-65596072592c4f00389d5e7b-7c51b3c8919b8262394cce80a545215107").
+		when().
+				get("/workspaces").
+		then().
+				log().all()
+				.assertThat()
+				.statusCode(200)
+				//hasItems, hasItem, equalTo, etc all these methods are coming from hamcrest matchers. 
+				.body("workspaces.name", hasItems("Team Workspace","test","My R&D","My Workspace","My Workspace","My Workspace"), // hasItems checks the names of all workspaces.
+						"workspaces.name", hasItem("test"), // hasItem check if any workspace name is test. 
+						"workspaces.type", hasItems("team","team","team","team","team","personal"),
+						"workspaces[0].name", equalTo("Team Workspace"),
+						"workspaces[0].name", is(equalTo("Team Workspace")), // The purpose of adding is before equalTo is to make the code more readable.
+						"workspaces.size()", equalTo(6));
+	}
+	
+	
+	
+	// In order to perform other test operations on the response first we need to extract the response using restAssured then perform different assertions using testNg, jUnit, etc. 
+	@org.testng.annotations.Test
+	public void extract_response() {
+		Response res = given(). 
+				baseUri("https://api.postman.com").
+				header("X-Api-Key","PMAK-65596072592c4f00389d5e7b-7c51b3c8919b8262394cce80a545215107").
+		when().
+				get("/workspaces").
+		then().
+				log().all()
+				.assertThat()
+				.statusCode(200)
+				.extract()
+				.response();
+				
+		
+	}
+}

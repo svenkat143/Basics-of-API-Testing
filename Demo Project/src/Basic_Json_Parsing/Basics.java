@@ -1,0 +1,79 @@
+// This is the very first file of this project.
+// Tasks that will be performed in this file.
+// validate if Add Place API is working as expected 
+//Add place-> Update Place with New Address -> Get Place to validate if New address is present in response
+
+
+package Basic_Json_Parsing;
+
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+import org.testng.Assert;
+
+import Basic_Json_Parsing.files.ReUsableMethods;
+import Basic_Json_Parsing.files.payload;
+
+public class Basics {
+
+	public static void main(String[] args) {
+		
+//RestAssured works on 3 Principles: -
+//given - all input details line url, headers, etc
+//when - Submit the API -resource,http method like get, put, delete,etc
+//Then - validate the response
+        
+
+		//Procress of getting response from real API.
+        // this is the base url of the api.
+		RestAssured.baseURI= "https://rahulshettyacademy.com";
+		
+		// given() is to add all input details
+		// .log().all() is used to display the logs where ever required.
+		// the body of the API is stored in AddPlace() of the Payload.java file		
+		String response = given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
+		.body(payload.AddPlace()).when().post("maps/api/place/add/json")
+		.then().assertThat().statusCode(200).body("scope", equalTo("APP"))
+		.header("server", "Apache/2.4.52 (Ubuntu)").extract().response().asString();
+		
+		System.out.println(response);
+		
+		//for parsing Json
+		JsonPath js=new JsonPath(response); 
+		String placeId=js.getString("place_id");
+		
+		System.out.println(placeId);
+		
+		//Update Place
+		String newAddress = "Summer Walk, Africa";
+		
+		given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
+		.body("{\r\n" + 
+				"\"place_id\":\""+placeId+"\",\r\n" + 
+				"\"address\":\""+newAddress+"\",\r\n" + 
+				"\"key\":\"qaclick123\"\r\n" + 
+				"}").
+		when().put("maps/api/place/update/json")
+		.then().assertThat().log().all().statusCode(200).body("msg", equalTo("Address successfully updated"));
+		
+		//Get Place
+		
+	String getPlaceResponse=	given().log().all().queryParam("key", "qaclick123")
+		.queryParam("place_id",placeId)
+		.when().get("maps/api/place/get/json")
+		.then().assertThat().log().all().statusCode(200).extract().response().asString();
+	
+	// The code is called from ReUsableMethods.java file.
+	JsonPath js1=ReUsableMethods.rawToJson(getPlaceResponse);
+	String actualAddress =js1.getString("address");
+	System.out.println(actualAddress);
+	// Testng used here.
+	Assert.assertEquals(actualAddress, newAddress);
+	//The are the testing frameworks that can be used along with restassured Cucumber Junit, Testng
+		
+	}
+
+}

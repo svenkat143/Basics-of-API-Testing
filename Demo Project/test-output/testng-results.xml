@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-11-19T19:55:25 IST" name="Default suite" finished-at="2023-11-19T19:55:35 IST" duration-ms="10608">
+    <groups>
+    </groups>
+    <test started-at="2023-11-19T19:55:25 IST" name="Default test" finished-at="2023-11-19T19:55:35 IST" duration-ms="10608">
+      <class name="Basics_of_Restassured.AutomateGET">
+        <test-method signature="extract_response()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:25 IST" name="extract_response" finished-at="2023-11-19T19:55:27 IST" duration-ms="2669" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extract_response -->
+        <test-method signature="extract_single_value_from_response()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:27 IST" name="extract_single_value_from_response" finished-at="2023-11-19T19:55:29 IST" duration-ms="1867" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extract_single_value_from_response -->
+        <test-method signature="hamcrest_assert_on_extracted_response()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:29 IST" name="hamcrest_assert_on_extracted_response" finished-at="2023-11-19T19:55:31 IST" duration-ms="1519" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- hamcrest_assert_on_extracted_response -->
+        <test-method signature="log_only_if_error()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:31 IST" name="log_only_if_error" finished-at="2023-11-19T19:55:32 IST" duration-ms="1316" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- log_only_if_error -->
+        <test-method signature="request_response_logging_operations()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:32 IST" name="request_response_logging_operations" finished-at="2023-11-19T19:55:33 IST" duration-ms="1468" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- request_response_logging_operations -->
+        <test-method signature="validate_get_status_code()[pri:0, instance:Basics_of_Restassured.AutomateGET@2accdbb5]" started-at="2023-11-19T19:55:33 IST" name="validate_get_status_code" finished-at="2023-11-19T19:55:35 IST" duration-ms="1715" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validate_get_status_code -->
+      </class> <!-- Basics_of_Restassured.AutomateGET -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

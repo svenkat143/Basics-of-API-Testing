@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\svenk\Desktop\API Automation\Basics of API Testing\.metadata\.plugins\org.eclipse.jdt.core
+70160477.index
+2910186258.index
+1865797976.index
